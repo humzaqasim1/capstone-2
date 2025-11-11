@@ -28,5 +28,4 @@ public class Drink implements Product {
         return receipt;
     }
 
-
 }

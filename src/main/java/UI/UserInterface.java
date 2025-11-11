@@ -1,39 +1,73 @@
 package UI;
 
+import models.Drink;
+import models.Order;
+
 import java.util.Scanner;
 
 public class UserInterface {
     Scanner scanner = new Scanner(System.in);
+    Order order = new Order();
     public void displayHomeScreen(){
-        System.out.println("Welcome to the Home Screen!");
-        System.out.println("Please select an option:");
-        System.out.println("Press 1 for a new order");
-        System.out.println("Press 0 to exit the application");
-        String choice = scanner.nextLine();
-        switch (choice){
-            case "1":
-                displayOrderScreen();
-            break;
-            case "0":
-                return;
-            default:
-                System.out.println("Invalid choice");
+        while (true) {
+            System.out.println("Welcome to the Home Screen!");
+            System.out.println("Please select an option:");
+            System.out.println("Press 1 for a new order");
+            System.out.println("Press 0 to exit the application");
+            String choice = scanner.nextLine();
+            switch (choice){
+                case "1":
+                    displayOrderScreen();
+                    break;
+                case "0":
+                    return;
+                default:
+                    System.out.println("Invalid choice");
+                }
         }
     }
 
     public void displayOrderScreen(){
-        System.out.println("Welcome to the models.Order Screen!");
-        System.out.println("Please select an option:");
-        System.out.println("Press 1 to add sandwich");
-        System.out.println("Press 2 to add drink");
-        System.out.println("Press 3 to add chips");
-        System.out.println("Press 4 to checkout");
-        System.out.println("Press 0 to cancel order");
-        String choice = scanner.nextLine();
-        switch (choice){
-            case "1":
-
+        while (true) {
+            System.out.println("Welcome to the Order Screen!");
+            System.out.println("Please select an option:");
+            System.out.println("Press 1 to add sandwich");
+            System.out.println("Press 2 to add drink");
+            System.out.println("Press 3 to add chips");
+            System.out.println("Press 4 to checkout");
+            System.out.println("Press 0 to cancel order");
+            String choice = scanner.nextLine();
+            switch (choice) {
+                case "1":
+                    System.out.println("Press 1 to add sandwich");
+                    break;
+                case "2":
+                    addDrink();
+                    break;
+                case "3":
+                    System.out.println("Press 3 to add chips");
+                    break;
+                case "4":
+                    System.out.println("Press 4 to checkout");
+                    break;
+                case "0":
+                    System.out.println("Press 0 to cancel order");
+                    return;
+                default:
+                    System.out.println("Invalid choice");
+                    break;
+            }
         }
+    }
+
+    private void addDrink() {
+        System.out.println("Which size would you like? Small, Medium, or Large");
+        String size = scanner.nextLine().toLowerCase().trim();
+        System.out.println("Which flavor would you like? Coke, Sprite, or Dr. Pepper");
+        String flavor = scanner.nextLine().toLowerCase().trim();
+        Drink drink = new Drink(size, flavor);
+        order.addProduct(drink);
+        System.out.println(order.getProducts().get(0).getReceipt());
     }
 
     public void checkOut(){
