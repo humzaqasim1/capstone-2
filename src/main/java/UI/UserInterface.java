@@ -1,5 +1,6 @@
 package UI;
 
+import models.Chips;
 import models.Drink;
 import models.Order;
 
@@ -45,19 +46,27 @@ public class UserInterface {
                     addDrink();
                     break;
                 case "3":
-                    System.out.println("Press 3 to add chips");
+                    addChips();
                     break;
                 case "4":
                     System.out.println("Press 4 to checkout");
                     break;
                 case "0":
-                    System.out.println("Press 0 to cancel order");
+                    System.out.println("Cancelling order...");
                     return;
                 default:
                     System.out.println("Invalid choice");
                     break;
             }
         }
+    }
+
+    private void addChips() {
+        System.out.println("Which flavor would you like? Regular, Jalapeño, or BBQ");
+        String flavor = scanner.nextLine().toLowerCase().trim();
+        Chips chips = new Chips(flavor);
+        order.addProduct(chips);
+        System.out.println(order.getProducts().get(0).getReceipt());
     }
 
     private void addDrink() {

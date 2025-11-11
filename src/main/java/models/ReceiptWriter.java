@@ -6,7 +6,7 @@ public class ReceiptWriter {
         // create a FileWriter and wrap in BufferedWriter (src/main/resources/receipts)
 
         // loop through all order items
-        //   - write the items to the to reciept
+        //   - write the items to the to receipt
 
         //write total cost
 
@@ -15,7 +15,7 @@ public class ReceiptWriter {
     }
 
     private static String generateTimestamp() {
-        // Create timestamp string useing a formatter
+        // Create timestamp string using a formatter
         // return that string
         return "";
     }
