@@ -5,9 +5,10 @@ public class Topping {
     private String type;
     private boolean extra;
 
-    public Topping(String name, String type) {
+    public Topping(String name, String type, boolean extra) {
         this.name = name;
         this.type = type;
+        this.extra = extra;
     }
 
     public double toppingPrice(String breadLength) {

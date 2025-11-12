@@ -25,6 +25,8 @@ public class Main {
 //        System.out.println(sandwich.toString());
         UserInterface userInterface = new UserInterface();
         userInterface.displayHomeScreen();
+        Sandwich sandwich = new Sandwich("wheat", "8", true);
+        sandwich.addTopping();
 
     }
 }

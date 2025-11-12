@@ -1,10 +1,12 @@
 package models;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 public class Order {
-    private ArrayList<Product> products = new ArrayList<>();
+    public ArrayList<Product> products = new ArrayList<>();
     private double totalPrice;
+
 
     public void addProduct(Product product){
         products.add(product);
@@ -28,9 +30,30 @@ public class Order {
         return products;
     }
 
-    public String getOrderSummary(){
-        return "";
+    public void getOrderSummary(){
+        for (Product product: products){
+            System.out.println(product.getReceipt());
+        }
+//        return String.format("%s%s%.2f", products, " total price: $", totalPrice);
     }
+    public double getTotalPrice(){
+        for (Product product: products){
+            totalPrice += product.getPrice();
+        }
+        return totalPrice;
+    }
+
+    public String receiptStringBuilder(){
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append("\nYour order: \n");
+        for (Product product: products){
+            stringBuilder.append(product.getReceipt()).append("\n");
+        }
+        return stringBuilder.toString();
+    }
+//    public String toString(){
+//        return String.format("%s%s%.2f", products, " total price: $", totalPrice);
+//    }
     // create List for order items (sandwiches, drinks, and chips)
     // store total price
 

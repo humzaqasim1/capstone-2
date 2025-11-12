@@ -1,22 +1,35 @@
 package models;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 public class ReceiptWriter {
     public static void saveReceipt(Order order) {
-        // generate filename using current date/time (yyyyMMdd-HHmmss.txt)
-        // create a FileWriter and wrap in BufferedWriter (src/main/resources/receipts)
-
-        // loop through all order items
-        //   - write the items to the to receipt
-
-        //write total cost
-
-        // close BufferedWriter
-        // handle IOException with error message
+        String receipt = createFileName();
+        File file = new File(receipt);
+        try(BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(file))) {
+            bufferedWriter.write("Receipt: " + generateTimestamp());
+            bufferedWriter.write(order.receiptStringBuilder());
+//            for (Product product: order.getProducts()){
+//                bufferedWriter.write(product.getReceipt());
+//            }
+        } catch (IOException e) {
+            System.out.println("Error" + e.getMessage());
+        }
     }
 
     private static String generateTimestamp() {
-        // Create timestamp string using a formatter
-        // return that string
-        return "";
+        LocalDateTime now = LocalDateTime.now();
+        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyyMMdd-HHmm");
+        return now.format(dateTimeFormatter);
+    }
+
+    public static String createFileName(){
+        String fileName = new String("src/main/resources/receipts/" + generateTimestamp() + ".txt");
+        return fileName;
     }
 }

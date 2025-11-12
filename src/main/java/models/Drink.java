@@ -24,8 +24,7 @@ public class Drink implements Product {
 
     @Override
     public String getReceipt() {
-        String receipt = flavor + " " + size + " - $ " + getPrice();
-        return receipt;
+        return String.format("%s|%s|%s%.2f", flavor, size, "$", getPrice());
     }
 
 }
