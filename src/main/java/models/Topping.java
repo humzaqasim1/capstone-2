@@ -11,6 +11,18 @@ public class Topping {
         this.extra = extra;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public boolean isExtra() {
+        return extra;
+    }
+
     public double toppingPrice(String breadLength) {
         double price = 0;
         if (type.equalsIgnoreCase("meat")) {
@@ -23,11 +35,11 @@ public class Topping {
             }
             if (extra) {
                 if (breadLength.equalsIgnoreCase("4")) {
-                    price = 0.50;
+                    price += 0.50;
                 } else if (breadLength.equalsIgnoreCase("8")) {
-                    price = 1.00;
+                    price += 1.00;
                 } else if (breadLength.equalsIgnoreCase("12")) {
-                    price = 1.50;
+                    price += 1.50;
                 }
             }
             if (type.equalsIgnoreCase("cheese")) {
@@ -40,11 +52,11 @@ public class Topping {
                 }
                 if (extra) {
                     if (breadLength.equalsIgnoreCase("4")) {
-                        price = 0.30;
+                        price += 0.30;
                     } else if (breadLength.equalsIgnoreCase("8")) {
-                        price = 0.60;
+                        price += 0.60;
                     } else if (breadLength.equalsIgnoreCase("12")) {
-                        price = 0.90;
+                        price += 0.90;
                     }
                 }
             }

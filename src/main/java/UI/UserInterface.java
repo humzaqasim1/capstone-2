@@ -2,6 +2,7 @@ package UI;
 
 import models.*;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class UserInterface {
@@ -62,15 +63,46 @@ public class UserInterface {
     }
 
     private void addSandwich() {
+        ArrayList<Topping> meats = new ArrayList<>();
+        ArrayList<Topping> cheeses = new ArrayList<>();
+        ArrayList<Topping> toppings = new ArrayList<>();
         System.out.println("What kind of bread would you like? White, Wheat, Rye, or Wrap");
         String breadType = scanner.nextLine().toLowerCase().trim();
         System.out.println("What bread length would you like? 4\", 8\", or 12\"");
         String breadLength = scanner.nextLine().toLowerCase().trim();
         System.out.println("Would you like it toasted? true or false");
         boolean toasted = scanner.nextBoolean();
-        Sandwich sandwich = new Sandwich(breadType, breadLength, toasted);
+        scanner.nextLine();
+        System.out.println("Would you like meat on your sandwich? Y or N");
+        String meatChoice = scanner.nextLine().toLowerCase().trim();
+        if (meatChoice.equalsIgnoreCase("y")){
+            meats = addMeatMenu();
+        }
+        System.out.println("Would you like cheese on your sandwich? Y or N");
+        String cheeseChoice = scanner.nextLine().toLowerCase().trim();
+        if (cheeseChoice.equalsIgnoreCase("y")){
+            cheeses = addCheeseMenu();
+        }
+        System.out.println("Would you like add regular toppings? Y or N");
+        String toppingsChoice = scanner.nextLine().toLowerCase().trim();
+        if (cheeseChoice.equalsIgnoreCase("y")){
+            toppings = addRegularToppingMenu();
+        }
+        Sandwich sandwich = new Sandwich(breadType, breadLength, toasted,meats, cheeses, toppings);
+        ArrayList<Topping> sandwichOrder = sandwich.getMeats();
+        for (Topping meat : sandwichOrder) {
+            System.out.println(meat.getName());
+        }
 
-        System.out.println("Would you like meat on your sandwich?");
+        sandwichOrder = sandwich.getCheeses();
+        for (Topping cheese : sandwichOrder) {
+            System.out.println(cheese.getName());
+        }
+
+        sandwichOrder = sandwich.getToppings();
+        for (Topping topping : sandwichOrder) {
+            System.out.println(topping.getName());
+        }
     }
 
     private void addChips() {
@@ -113,105 +145,162 @@ public class UserInterface {
         }
     }
 
-    public void addToppingsMenu(Sandwich sandwich) {
-        System.out.println("Select topping to add:");
-        System.out.println("Enter 1 to add meat (premium)");
-        System.out.println("Enter 2 to add cheese (premium)");
-        System.out.println("Enter 3 to add regular topping (included)");
-        System.out.println("Enter 4 to add sauce (included)");
-        String choice = scanner.nextLine().trim();
-        switch (choice) {
-            case "1":
-                addMeatMenu(sandwich);
-                break;
-            case "2":
-                break;
-            case "3":
-                break;
-            case "4":
-                break;
-        }
+//    public void addToppingsMenu(Sandwich sandwich) {
+//        System.out.println("Select topping to add:");
+//        System.out.println("Enter 1 to add meat (premium)");
+//        System.out.println("Enter 2 to add cheese (premium)");
+//        System.out.println("Enter 3 to add regular topping (included)");
+//        System.out.println("Enter 4 to add sauce (included)");
+//        String choice = scanner.nextLine().trim();
+//        switch (choice) {
+//            case "1":
+//                addMeatMenu();
+//                break;
+//            case "2":
+//                addCheeseMenu(sandwich);
+//                break;
+//            case "3":
+//                addRegularToppingMenu(sandwich);
+//                break;
+//            case "4":
+//                break;
+//        }
+//
+//    }
 
-    }
-
-    private void addMeatMenu(Sandwich sandwich) {
+    public ArrayList<Topping> addMeatMenu() {
+        ArrayList<Topping> toppings = new ArrayList<>();
         boolean running = true;
         while (running) {
-            System.out.println("Select meat to add");
+            System.out.println("Select meat to add:");
             System.out.println("Enter 1 to add steak");
             System.out.println("Enter 2 to add ham");
             System.out.println("Enter 3 to add salami");
             System.out.println("Enter 4 to add roast beef");
             System.out.println("Enter 5 to add chicken");
             System.out.println("Enter 6 to add bacon");
-            System.out.println("Enter 7 to add extra meat");
+            System.out.println("Enter 0 to exit meat menu");
             String choice = scanner.nextLine().trim();
+            if (choice.equals("0")){
+                return toppings;
+            }
+            System.out.println("Would you like extra? Enter Y or N");
+            String extraChoice = scanner.nextLine().toLowerCase().trim();
+
             switch (choice) {
                 case "1":
-                    sandwich.addTopping(new Topping("steak", "meat", false));
+                    toppings.add(new Topping("steak", "meat", extraChoice.equals("y")));
                     break;
                 case "2":
-                    sandwich.addTopping(new Topping("ham", "meat", false));
+                    toppings.add(new Topping("ham", "meat", extraChoice.equals("y")));
                     break;
                 case "3":
-                    sandwich.addTopping(new Topping("salami", "meat", false));
+                    toppings.add(new Topping("salami", "meat", extraChoice.equals("y")));
                     break;
                 case "4":
-                    sandwich.addTopping(new Topping("roast beef", "meat", false));
+                    toppings.add(new Topping("roast beef", "meat", extraChoice.equals("y")));
                     break;
                 case "5":
-                    sandwich.addTopping(new Topping("chicken", "meat", false));
+                    toppings.add(new Topping("chicken", "meat", extraChoice.equals("y")));
                     break;
                 case "6":
-                    sandwich.addTopping(new Topping("bacon", "meat", false));
-                    break;
-                case "7":
-                    extraMeatMenu(sandwich);
+                    toppings.add(new Topping("bacon", "meat", extraChoice.equals("y")));
                     break;
                 default:
                     System.out.println("Invalid choice");
                     break;
             }
-            System.out.println("Would you like extra meat?");
-            System.out.println("Enter 1 for yes");
-            System.out.println("Enter 0 for no");
-            String extraMeatChoice = scanner.nextLine().trim();
-            if(extraMeatChoice.equals("1")){
-
-            }
         }
-
+        return toppings;
     }
 
-    private void extraMeatMenu(Sandwich sandwich) {
-        System.out.println("Select meat to add");
-        System.out.println("Enter 1 to add steak");
-        System.out.println("Enter 2 to add ham");
-        System.out.println("Enter 3 to add salami");
-        System.out.println("Enter 4 to add roast beef");
-        System.out.println("Enter 5 to add chicken");
-        System.out.println("Enter 6 to add bacon");
-        String choice = scanner.nextLine().trim();
-        switch (choice) {
-            case "1":
-                sandwich.addTopping(new Topping("steak", "meat", true));
-                break;
-            case "2":
-                sandwich.addTopping(new Topping("ham", "meat", true));
-                break;
-            case "3":
-                sandwich.addTopping(new Topping("salami", "meat", true));
-                break;
-            case "4":
-                sandwich.addTopping(new Topping("roast beef", "meat", true));
-                break;
-            case "5":
-                sandwich.addTopping(new Topping("chicken", "meat", true));
-                break;
-            case "6":
-                sandwich.addTopping(new Topping("bacon", "meat", true));
-                break;
+    public ArrayList<Topping> addCheeseMenu() {
+        ArrayList<Topping> toppings = new ArrayList<>();
+        boolean running = true;
+        while (running) {
+            System.out.println("Select cheese to add:");
+            System.out.println("Enter 1 to add american");
+            System.out.println("Enter 2 to add provolone");
+            System.out.println("Enter 3 to add cheddar");
+            System.out.println("Enter 4 to add swiss");
+            System.out.println("Enter 0 to exit cheese menu");
+            String choice = scanner.nextLine().trim();
+            if (choice.equals("0")){
+                return toppings;
+            }
+            System.out.println("Would you like extra? Enter Y or N");
+            String extraChoice = scanner.nextLine().toLowerCase().trim();
+            switch (choice) {
+                case "1":
+                    toppings.add(new Topping("american", "cheese", extraChoice.equals("y")));
+                    break;
+                case "2":
+                    toppings.add(new Topping("provolone", "cheese", extraChoice.equals("y")));
+                    break;
+                case "3":
+                    toppings.add(new Topping("cheddar", "cheese", extraChoice.equals("y")));
+                    break;
+                case "4":
+                    toppings.add(new Topping("swiss", "cheese", extraChoice.equals("y")));
+                    break;
+            }
         }
+        return toppings;
+    }
+
+    public ArrayList<Topping> addRegularToppingMenu() {
+        ArrayList<Topping> toppings = new ArrayList<>();
+        boolean running = true;
+        while (running) {
+            System.out.println("Select toppings to add:");
+            System.out.println("Enter 1 to add lettuce");
+            System.out.println("Enter 2 to add peppers");
+            System.out.println("Enter 3 to add onions");
+            System.out.println("Enter 4 to add tomatoes");
+            System.out.println("Enter 5 to add jalapeños");
+            System.out.println("Enter 6 to add cucumbers");
+            System.out.println("Enter 7 to add pickles");
+            System.out.println("Enter 8 to add guacamole");
+            System.out.println("Enter 9 to add mushrooms");
+            System.out.println("Enter 0 to exit regular toppings menu");
+            String choice = scanner.nextLine().trim();
+            if (choice.equals("0")){
+                return toppings;
+            }
+            switch (choice) {
+                case "1":
+                    toppings.add(new Topping("lettuce", "regular", false));
+                    break;
+                case "2":
+                    toppings.add(new Topping("peppers", "regular", false));
+                    break;
+                case "3":
+                    toppings.add(new Topping("onions", "regular", false));
+                    break;
+                case "4":
+                    toppings.add(new Topping("tomatoes", "regular", false));
+                    break;
+                case "5":
+                    toppings.add(new Topping("jalapeños", "regular", false));
+                    break;
+                case "6":
+                    toppings.add(new Topping("cucumbers", "regular", false));
+                    break;
+                case "7":
+                    toppings.add(new Topping("pickles", "regular", false));
+                    break;
+                case "8":
+                    toppings.add(new Topping("guacamole", "regular", false));
+                    break;
+                case "9":
+                    toppings.add(new Topping("mushrooms", "regular", false));
+                    break;
+                default:
+                    System.out.println("Invalid choice");
+                    break;
+            }
+        }
+        return toppings;
     }
 }
 

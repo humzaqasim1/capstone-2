@@ -6,15 +6,20 @@ public class Sandwich implements Product {
 
     String breadType;
     String breadLength;
-    ArrayList<Topping> toppings = new ArrayList<>();
+    ArrayList<Topping> toppings;
     boolean toasted;
     double totalPrice;
     double basePrice;
+    ArrayList<Topping> meats;
+    ArrayList<Topping> cheeses;
 
-    public Sandwich(String breadType, String breadLength, boolean toasted) {
+    public Sandwich(String breadType, String breadLength, boolean toasted, ArrayList<Topping> toppings, ArrayList<Topping> meats, ArrayList<Topping> cheeses) {
         this.breadType = breadType;
         this.breadLength = breadLength;
         this.toasted = toasted;
+        this.toppings = toppings;
+        this.meats = meats;
+        this.cheeses = cheeses;
         this.basePrice = sandwichBasePrice(this.breadLength);
     }
 
@@ -30,13 +35,45 @@ public class Sandwich implements Product {
         return basePrice;
     }
 
-    public void addTopping(Topping topping){
-        toppings.add(topping);
-    }
+//    public void addTopping(Topping topping){
+//        toppings.add(topping);
+//    }
 
     @Override
     public double getPrice() {
         return 0;
+    }
+
+    public ArrayList<Topping> getCheeses() {
+        return cheeses;
+    }
+
+    public ArrayList<Topping> getMeats() {
+        return meats;
+    }
+
+    public double getBasePrice() {
+        return basePrice;
+    }
+
+    public double getTotalPrice() {
+        return totalPrice;
+    }
+
+    public boolean isToasted() {
+        return toasted;
+    }
+
+    public ArrayList<Topping> getToppings() {
+        return toppings;
+    }
+
+    public String getBreadLength() {
+        return breadLength;
+    }
+
+    public String getBreadType() {
+        return breadType;
     }
 
     @Override
