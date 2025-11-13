@@ -12,8 +12,8 @@ public class Sandwich implements Product {
     double basePrice;
     ArrayList<Topping> meats;
     ArrayList<Topping> cheeses;
-
-    public Sandwich(String breadType, String breadLength, boolean toasted, ArrayList<Topping> toppings, ArrayList<Topping> meats, ArrayList<Topping> cheeses) {
+    ArrayList<Topping> sauces;
+    public Sandwich(String breadType, String breadLength, boolean toasted, ArrayList<Topping> toppings, ArrayList<Topping> meats, ArrayList<Topping> cheeses, ArrayList<Topping> sauces) {
         this.breadType = breadType;
         this.breadLength = breadLength;
         this.toasted = toasted;

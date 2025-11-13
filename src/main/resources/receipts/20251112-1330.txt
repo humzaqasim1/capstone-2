@@ -1,0 +1,4 @@
+Receipt: 20251112-1330
+Your order: 
+coke|large|$3.00
+bbq chips|$2.50

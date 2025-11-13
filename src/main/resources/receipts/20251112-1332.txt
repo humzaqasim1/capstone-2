@@ -1,0 +1,5 @@
+Receipt: 20251112-1332
+Your order: 
+regular|chips|$2.50
+bbq|chips|$2.50
+sprite|large|$3.00
