@@ -132,6 +132,7 @@ public class UserInterface {
             case "1":
                 System.out.println("Saving receipt...");
                 receiptWriter.saveReceipt(order);
+                System.exit(1);
                 break;
             case "0":
                 System.out.println("Cancelling order...");

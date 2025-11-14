@@ -1,0 +1,4 @@
+Receipt: 20251113-2230
+Your order: 
+bbq|chips|$1.50
+Total order price: $1.5

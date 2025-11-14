@@ -1,0 +1,6 @@
+Receipt: 20251113-2227
+Your order: 
+Sandwich - wheat|4"|toasted|[lettuce, tomatoes, onions]|[chicken]|[provolone]|[mayo]|$7.25
+coke|small|$2.00
+bbq|chips|$1.50
+Total order price: $10.75
