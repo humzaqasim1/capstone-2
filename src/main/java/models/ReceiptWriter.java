@@ -14,9 +14,6 @@ public class ReceiptWriter {
         try(BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(file))) {
             bufferedWriter.write("Receipt: " + generateTimestamp());
             bufferedWriter.write(order.receiptStringBuilder());
-//            for (Product product: order.getProducts()){
-//                bufferedWriter.write(product.getReceipt());
-//            }
         } catch (IOException e) {
             System.out.println("Error" + e.getMessage());
         }

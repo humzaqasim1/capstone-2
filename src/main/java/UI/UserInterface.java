@@ -98,7 +98,6 @@ public class UserInterface {
         if (sauceChoice.equalsIgnoreCase("y")){
             sauces = addSauceMenu();
         }
-
         Sandwich sandwich = new Sandwich(breadType, breadLength, toasted, toppings, meats, cheeses, sauces);
         order.addProduct(sandwich);
         System.out.println(sandwich.getReceipt());
@@ -162,7 +161,6 @@ public class UserInterface {
             }
             System.out.println("Would you like extra? Enter Y or N");
             String extraChoice = scanner.nextLine().toLowerCase().trim();
-
             switch (choice) {
                 case "1":
                     toppings.add(new Topping("steak", "meat", extraChoice.equals("y")));
@@ -194,7 +192,6 @@ public class UserInterface {
             }
         }
         return toppings;
-
     }
 
     public ArrayList<Topping> addCheeseMenu() {

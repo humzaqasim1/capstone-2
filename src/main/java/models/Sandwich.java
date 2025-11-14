@@ -56,6 +56,7 @@ public class Sandwich implements Product {
         }
         return meatPrice;
     }
+
     public double getCheesePrice(){
         double cheesePrice = 0;
         for (Topping cheese: cheeses){
@@ -67,9 +68,6 @@ public class Sandwich implements Product {
     public double getPrice() {
         return basePrice + getMeatPrice() + getCheesePrice();
     }
-//    public double getTotalSandwichPrice() {
-//        return basePrice + getMeatPrice() + getCheesePrice();
-//    }
 
     public String isToasted() {
         if(toasted){
