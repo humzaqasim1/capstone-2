@@ -95,21 +95,9 @@ public class UserInterface {
             sauces = addSauceMenu();
         }
 
-        Sandwich sandwich = new Sandwich(breadType, breadLength, toasted,meats, cheeses, toppings, sauces);
-        ArrayList<Topping> sandwichOrder = sandwich.getMeats();
-        for (Topping meat : sandwichOrder) {
-            System.out.println(meat.getName());
-        }
-
-        sandwichOrder = sandwich.getCheeses();
-        for (Topping cheese : sandwichOrder) {
-            System.out.println(cheese.getName());
-        }
-
-        sandwichOrder = sandwich.getToppings();
-        for (Topping topping : sandwichOrder) {
-            System.out.println(topping.getName());
-        }
+        Sandwich sandwich = new Sandwich(breadType, breadLength, toasted, toppings, meats, cheeses, sauces);
+        order.addProduct(sandwich);
+        System.out.println(sandwich.getReceipt());
     }
 
     private void addChips() {
@@ -174,21 +162,27 @@ public class UserInterface {
             switch (choice) {
                 case "1":
                     toppings.add(new Topping("steak", "meat", extraChoice.equals("y")));
+                    running = false;
                     break;
                 case "2":
                     toppings.add(new Topping("ham", "meat", extraChoice.equals("y")));
+                    running = false;
                     break;
                 case "3":
                     toppings.add(new Topping("salami", "meat", extraChoice.equals("y")));
+                    running = false;
                     break;
                 case "4":
                     toppings.add(new Topping("roast beef", "meat", extraChoice.equals("y")));
+                    running = false;
                     break;
                 case "5":
                     toppings.add(new Topping("chicken", "meat", extraChoice.equals("y")));
+                    running = false;
                     break;
                 case "6":
                     toppings.add(new Topping("bacon", "meat", extraChoice.equals("y")));
+                    running = false;
                     break;
                 default:
                     System.out.println("Invalid choice");
@@ -196,6 +190,7 @@ public class UserInterface {
             }
         }
         return toppings;
+
     }
 
     public ArrayList<Topping> addCheeseMenu() {
@@ -217,15 +212,19 @@ public class UserInterface {
             switch (choice) {
                 case "1":
                     toppings.add(new Topping("american", "cheese", extraChoice.equals("y")));
+                    running = false;
                     break;
                 case "2":
                     toppings.add(new Topping("provolone", "cheese", extraChoice.equals("y")));
+                    running = false;
                     break;
                 case "3":
                     toppings.add(new Topping("cheddar", "cheese", extraChoice.equals("y")));
+                    running = false;
                     break;
                 case "4":
                     toppings.add(new Topping("swiss", "cheese", extraChoice.equals("y")));
+                    running = false;
                     break;
             }
         }
@@ -246,7 +245,7 @@ public class UserInterface {
             System.out.println("Enter 7 to add pickles");
             System.out.println("Enter 8 to add guacamole");
             System.out.println("Enter 9 to add mushrooms");
-            System.out.println("Enter 0 to exit regular toppings menu");
+            System.out.println("Enter 0 when finished adding toppings");
             String choice = scanner.nextLine().trim();
             if (choice.equals("0")){
                 return toppings;
@@ -298,7 +297,7 @@ public class UserInterface {
             System.out.println("Enter 4 to add ranch");
             System.out.println("Enter 5 to add thousand islands");
             System.out.println("Enter 6 to add vinaigrette");
-            System.out.println("Enter 0 to exit sauce menu");
+            System.out.println("Enter 0 when finished adding sauces");
             String choice = scanner.nextLine().trim();
             if (choice.equals("0")){
                 return toppings;

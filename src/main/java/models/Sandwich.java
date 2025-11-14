@@ -8,7 +8,7 @@ public class Sandwich implements Product {
     String breadLength;
     ArrayList<Topping> toppings;
     boolean toasted;
-    double totalPrice;
+    double totalSandwichPrice = getTotalSandwichPrice();
     double basePrice;
     ArrayList<Topping> meats;
     ArrayList<Topping> cheeses;
@@ -20,6 +20,7 @@ public class Sandwich implements Product {
         this.toppings = toppings;
         this.meats = meats;
         this.cheeses = cheeses;
+        this.sauces = sauces;
         this.basePrice = sandwichBasePrice(this.breadLength);
     }
 
@@ -34,10 +35,6 @@ public class Sandwich implements Product {
         }
         return basePrice;
     }
-
-//    public void addTopping(Topping topping){
-//        toppings.add(topping);
-//    }
 
     @Override
     public double getPrice() {
@@ -55,9 +52,22 @@ public class Sandwich implements Product {
     public double getBasePrice() {
         return basePrice;
     }
-
-    public double getTotalPrice() {
-        return totalPrice;
+    public double getMeatPrice(){
+        double meatPrice = 0;
+        for (Topping meat: meats){
+           meatPrice = meat.toppingPrice(breadLength);
+        }
+        return meatPrice;
+    }
+    public double getCheesePrice(){
+        double cheesePrice = 0;
+        for (Topping cheese: cheeses){
+            cheesePrice = cheese.toppingPrice(breadLength);
+        }
+        return cheesePrice;
+    }
+    public double getTotalSandwichPrice() {
+        return basePrice + getMeatPrice() + getCheesePrice();
     }
 
     public boolean isToasted() {
@@ -78,43 +88,6 @@ public class Sandwich implements Product {
 
     @Override
     public String getReceipt() {
-        return "";
+        return String.format("%s|%s%s|%s%s|%s|%s|%s|%s|%s%s", breadType, breadLength, "\"", "toasted: ", toasted, toppings, meats, cheeses, sauces, "$",totalSandwichPrice);
     }
-
-    public String toString(){
-        return String.format("%s|%s|%b|%.2f", breadType, breadLength, toasted, basePrice);
-    }
-//    public Sandwich(String breadType, String breadLength, boolean toasted) {
-
-    // store bread type (white, wheat, rye, wrap)
-    // store sandwich size (4, 8, or 12 inches)
-    // store if sandwich is toasted
-    // store meats, cheeses, toppings, sauces
-    // keep track of total price
-
-    // constructor: takes bread type, size, toasted
-    //   - initialize properties
-    //   - set base price based on size
-
-    // addMeat method:
-    //   - add meat(s)
-    //   - what is the price based on size and whether it's extra?
-
-    // addCheese method:
-    //   - add cheese(s)
-    //   - add price depending on size and whether it's extra
-
-    // addTopping method:
-    //   - add topping(s)
-    //   - no charge
-
-    // addSauce method:
-    //   - add sauce(s)
-    //   - no charge
-
-    // getPrice method:
-    //   - return current total price
-
-    // getSummary method:
-    //   - return a string with all sandwich details and price
 }

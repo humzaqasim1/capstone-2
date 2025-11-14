@@ -65,4 +65,13 @@ public class Topping {
             }
         } return price;
     }
+
+    @Override
+    public String toString() {
+        if (extra){
+            return name + "+extra";
+        } else{
+            return name;
+        }
+    }
 }
