@@ -1,0 +1,8 @@
+Receipt: 20251113-2151
+Your order: 
+Sandwich - wrap|12"|toasted|[lettuce, tomatoes, onions]|[chicken]|[cheddar+extra]|[mayo, thousand islands]|$14.65
+coke|medium|$2.50
+sprite|large|$3.00
+bbq|chips|$1.50
+jalapeno|chips|$1.50
+Total order price: $23.15

@@ -1,0 +1,7 @@
+Receipt: 20251113-2043
+Your order: 
+Sandwich - white|4"|toasted|[onions, tomatoes, jalapeños]|[salami+extra]|[provolone]|[mustard, ketchup]|$7.75
+coke|large|$3.00
+bbq|chips|$1.50
+regular|chips|$1.50
+Total order price: $13.75
