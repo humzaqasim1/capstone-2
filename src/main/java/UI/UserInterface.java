@@ -37,7 +37,7 @@ public class UserInterface {
             System.out.println("Press 2 to add drink");
             System.out.println("Press 3 to add chips");
             System.out.println("Press 4 to checkout");
-            System.out.println("Press 0 to cancel order");
+            System.out.println("Press 0 to exit order screen");
             String choice = scanner.nextLine();
             switch (choice) {
                 case "1":
@@ -53,7 +53,6 @@ public class UserInterface {
                     checkOut();
                     break;
                 case "0":
-                    System.out.println("Cancelling order...");
                     return;
                 default:
                     System.out.println("Invalid choice");
@@ -71,9 +70,14 @@ public class UserInterface {
         String breadType = scanner.nextLine().toLowerCase().trim();
         System.out.println("What bread length would you like? 4\", 8\", or 12\"");
         String breadLength = scanner.nextLine().toLowerCase().trim();
-        System.out.println("Would you like it toasted? true or false");
-        boolean toasted = scanner.nextBoolean();
-        scanner.nextLine();
+        System.out.println("Would you like it toasted? Y or N");
+        String toastedChoice = scanner.nextLine().toLowerCase().trim();
+        boolean toasted = false;
+        if (toastedChoice.equalsIgnoreCase("y")){
+            toasted = true;
+        } else if (toastedChoice.equalsIgnoreCase("n")){
+            toasted = false;
+        }
         System.out.println("Would you like meat (premium) on your sandwich? Y or N");
         String meatChoice = scanner.nextLine().toLowerCase().trim();
         if (meatChoice.equalsIgnoreCase("y")){
@@ -120,8 +124,8 @@ public class UserInterface {
 
     public void checkOut() {
         System.out.println("Checkout:");
-        order.getTotalPrice();
         order.getOrderSummary();
+        System.out.println("Order total: $" + order.getTotalPrice());
         System.out.println("Enter 1 to confirm");
         System.out.println("Enter 0 to cancel");
         String choice = scanner.nextLine();

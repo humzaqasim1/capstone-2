@@ -42,28 +42,29 @@ public class Topping {
                     price += 1.50;
                 }
             }
-            if (type.equalsIgnoreCase("cheese")) {
+        }
+        if (type.equalsIgnoreCase("cheese")) {
+            if (breadLength.equalsIgnoreCase("4")) {
+                price = 0.75;
+            } else if (breadLength.equalsIgnoreCase("8")) {
+                price = 1.50;
+            } else if (breadLength.equalsIgnoreCase("12")) {
+                price = 2.25;
+            }
+            if (extra) {
                 if (breadLength.equalsIgnoreCase("4")) {
-                    price = 0.75;
+                    price += 0.30;
                 } else if (breadLength.equalsIgnoreCase("8")) {
-                    price = 1.50;
+                    price += 0.60;
                 } else if (breadLength.equalsIgnoreCase("12")) {
-                    price = 2.25;
-                }
-                if (extra) {
-                    if (breadLength.equalsIgnoreCase("4")) {
-                        price += 0.30;
-                    } else if (breadLength.equalsIgnoreCase("8")) {
-                        price += 0.60;
-                    } else if (breadLength.equalsIgnoreCase("12")) {
-                        price += 0.90;
-                    }
+                    price += 0.90;
                 }
             }
-            if (type.equalsIgnoreCase("regular") || type.equalsIgnoreCase("sauce")){
-                price = 0;
-            }
-        } return price;
+        }
+        if (type.equalsIgnoreCase("regular") || type.equalsIgnoreCase("sauce")){
+            price = 0;
+        }
+        return price;
     }
 
     @Override

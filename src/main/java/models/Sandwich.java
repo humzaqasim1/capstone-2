@@ -6,13 +6,13 @@ public class Sandwich implements Product {
 
     String breadType;
     String breadLength;
-    ArrayList<Topping> toppings;
     boolean toasted;
-    double totalSandwichPrice = getTotalSandwichPrice();
-    double basePrice;
+    ArrayList<Topping> toppings;
     ArrayList<Topping> meats;
     ArrayList<Topping> cheeses;
     ArrayList<Topping> sauces;
+    double basePrice;
+    double totalSandwichPrice;
     public Sandwich(String breadType, String breadLength, boolean toasted, ArrayList<Topping> toppings, ArrayList<Topping> meats, ArrayList<Topping> cheeses, ArrayList<Topping> sauces) {
         this.breadType = breadType;
         this.breadLength = breadLength;
@@ -22,6 +22,7 @@ public class Sandwich implements Product {
         this.cheeses = cheeses;
         this.sauces = sauces;
         this.basePrice = sandwichBasePrice(this.breadLength);
+        this.totalSandwichPrice = getPrice();
     }
 
     public double sandwichBasePrice(String breadLength){
@@ -36,11 +37,6 @@ public class Sandwich implements Product {
         return basePrice;
     }
 
-    @Override
-    public double getPrice() {
-        return 0;
-    }
-
     public ArrayList<Topping> getCheeses() {
         return cheeses;
     }
@@ -52,6 +48,7 @@ public class Sandwich implements Product {
     public double getBasePrice() {
         return basePrice;
     }
+
     public double getMeatPrice(){
         double meatPrice = 0;
         for (Topping meat: meats){
@@ -66,12 +63,20 @@ public class Sandwich implements Product {
         }
         return cheesePrice;
     }
-    public double getTotalSandwichPrice() {
+    @Override
+    public double getPrice() {
         return basePrice + getMeatPrice() + getCheesePrice();
     }
+//    public double getTotalSandwichPrice() {
+//        return basePrice + getMeatPrice() + getCheesePrice();
+//    }
 
-    public boolean isToasted() {
-        return toasted;
+    public String isToasted() {
+        if(toasted){
+            return "toasted";
+        } else {
+            return "not toasted";
+        }
     }
 
     public ArrayList<Topping> getToppings() {
@@ -88,6 +93,6 @@ public class Sandwich implements Product {
 
     @Override
     public String getReceipt() {
-        return String.format("%s|%s%s|%s%s|%s|%s|%s|%s|%s%s", breadType, breadLength, "\"", "toasted: ", toasted, toppings, meats, cheeses, sauces, "$",totalSandwichPrice);
+        return String.format("%s%s|%s%s|%s|%s|%s|%s|%s|%s%s","Sandwich - ", breadType, breadLength, "\"", isToasted(), toppings, meats, cheeses, sauces, "$",totalSandwichPrice);
     }
 }

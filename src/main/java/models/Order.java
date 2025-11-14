@@ -5,7 +5,7 @@ import java.util.ArrayList;
 
 public class Order {
     public ArrayList<Product> products = new ArrayList<>();
-    private double totalPrice;
+    private double totalPrice = 0;
 
 
     public void addProduct(Product product){
@@ -49,6 +49,7 @@ public class Order {
         for (Product product: products){
             stringBuilder.append(product.getReceipt()).append("\n");
         }
+        stringBuilder.append("Total order price: $" + getTotalPrice());
         return stringBuilder.toString();
     }
 }
