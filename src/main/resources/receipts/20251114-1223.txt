@@ -1,0 +1,5 @@
+Receipt: 20251114-1223
+Your order: 
+Sandwich - wheat|8"|toasted|[peppers]|[]|[cheddar]|[mustard]|$8.5
+coke|small|$2.00
+Total order price: $10.5

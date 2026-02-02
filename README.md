@@ -1,5 +1,5 @@
 # Capstone 2: Humza's Deli
-![img_1.png](img_1.png)
+![img_1.png](src/main/resources/img_1.png)
 ## by Humza Qasim
 
 ### Description:
@@ -14,7 +14,7 @@ This project is a point-of-sale system for a deli/sandwich shop. Users can custo
 - Interactive command-line interface
 
 ### Class Diagram: 
-![img_3.png](img_3.png)
+![img_3.png](src/main/resources/img_3.png)
 ### Interesting Code:
 The most challenging part of this project was implementing the pricing system. Each sandwich size has a different base price, and premium toppings (meats and cheeses) also scale with size. I used a Topping class that calculates its own price based on the sandwich size, which keeps the code clean and follows object-oriented principles.
 Another interesting feature is the receipt system. The ReceiptWriter class saves each order to a timestamped file, so the shop can keep track of all transactions. It was also very interesting figuring out how to ask the user for the individual sandwich toppings.
@@ -64,8 +64,8 @@ private void addSandwich() {
     }
 ````
 ### Picture Example:
-![img.png](img.png)
-![img_2.png](img_2.png)
+![img.png](src/main/resources/img.png)
+![img_2.png](src/main/resources/img_2.png)
 ### Future Improvements
 
 - Make signature sandwich options
